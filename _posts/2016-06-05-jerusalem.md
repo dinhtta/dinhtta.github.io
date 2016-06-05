@@ -47,6 +47,7 @@ was 30oC outside, but the breezes was kind and shades plentiful. There were laug
 off enough to accentuate the quietness. 15 minute later, conviced that I was nowhere close to the hotel, the search for
 a precious taxi began.
 
-Here is the scene today (Sunday), promising another week. 
-![Today](../images/jerusalem.JPG)
+Here is the scene today (Sunday), promising another busy week. 
+
+![Today](../images/jerusalem.JPG#2)
 
