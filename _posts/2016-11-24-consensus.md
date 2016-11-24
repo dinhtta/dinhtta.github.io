@@ -3,7 +3,7 @@ layout: post
 title: Consensus
 ---
 
-In the last 3 months I finally came to face one of most important, yet most challenging (and feared) problem
+In the last 3 months I have finally came to face one of most important, yet most challenging (and feared) problem
 in distributed systems, namely _distributed consensus_. First raised in 1980s, the problem of getting a set of
 parties to agree on some value, remains an active area of research, with papers after papers appearing in
 top-tier systems conferences like SIGCOMM, NSDI, SOSP, OSDI. One may remark at the fact that researchers in
@@ -106,6 +106,11 @@ there is at least one node survive two consecutive rounds. In particular, the pr
 from $$f+1$$ replicas, say $$(0,1,..,f)$$, because then in the next round, even if $$f$$ of them fail, there
 will be at least one replicas in $$[0,f]$$ present in majority quorum.  
 
+A more intuitive explanation is this: we want the operation committed at round $$t$$ to survive into round $$t+1$$,
+hence we need at least one node to survive the two rounds. To tolerate $$f$$ failure, the quorum size must be at least
+$$f+1$$ (since $$f$$ of them may fail in the next round). The network size for which any two quorums of size $$f+1$$
+intersect at 1 node is precisely $$2f+1$$ (set intersection property).  
+
 **What happen to the remaining $$f$$ replicas**. The leader requires $$f+1$$ replicas to response, because it
 assumes worst-case scenarios that the remaining $$f$$ are faulty. After these faulty nodes recover, they can
 catch up with other via some kinds of synchronization.  
@@ -145,25 +150,111 @@ to detect faulty nodes lying/equivocating_. $$3f+1$$ is the minimum size with th
 $$2f+1$$ replicas intersect at at least $$f+1$$, hence at least 1 non-faulty node survive to the next round,
 even when the adversary can stop any arbitrary node from communicating
 
-A more intuitive explanation for $$3f+1$$ is the following. Since the system wants to make progress, it should
-wait for only $$n-f$$ responses, since $$f$$ of them may be faulty. But the Byzantine node may simply
-preventing these $$f$$ nodes from communicating, thus the faulty nodes are actually inside the $$n-f$$ quorum.
-To tolerate $$f$$ failures in this $$n-f$$, there must be more non-faulty nodes than faulty ones, i.e. $$n-f-f
-\geq f+1 \leftrightarrow n \geq 3f+1$$. 
-
+A more intuitive explanation for $$3f+1$$ is the following. Unlike non-Byzantine protocols in which quorums need to
+intersect on 1 node, here the requirement is that the 1 node must be non-faulty. And because Byzantine node can lie
+arbitrarily, the only way to ensure that is to have the quorum intersection of size $$f+1$$. Since $$f$$ of them may
+fail in the next round, the minimum quorum size is $$2f+1$$. And the network size for which any two quorums of size $$2f+1$$
+intersect at $$f+1$$ nodes is precisely $$2(2f+1)-(f+1) = 3f+1$$.  
 
 ### Recent works in non-Byzantine consensus
+Following is a non-comprehensive list of recent, interesting works on non-Byzantine consensus.
+
++ _Fast Paxos_: Lamport's extension of Paxos that reduces the number of message delays/roundtrips from 4 to 3. Later works
+showed that it is actually not much faster than the original.  
++ _Practical implementation_: Raft [1] implements a version of the original VR protocol, optimizing for performance. 
++ Pushing down to the network: the networking communities are proposing to move some functionality (e.g. message
+ordering) of the protocols down to network layer, to exploit hardware performance and simplify the protocols themselves.
+This approach is made possible due to the availability of SDNs and programmable switches.  
+  + _Paxos on switch_: [7] implements Paxos protocols on P4, which could later be compiled and deployed directly on
+  P4-compatible switches. Although no experimental results were presented, potential improvement in performance could
+  only come from the direct use of different (faster?) hardware.  
+  + _Speculative Paxos on Mostly-Ordered Multicast_: [8]'s key design principle is to co-design network stack with the
+  high-level applications (a recurring theme in this group from University of Washington). They first design a network
+  primitive that guarantees ordered multicast messages with high probabilities (MOM). Albeit probabilistic, this MOM
+  property allows for speculative execution of requests at the replica. The key insight here is that **the major cost in Paxos
+  (and in other consensus protocol) is in agreeing on the order of requests from the client**, thus the protocol can be
+  more efficient (and simple) if request ordering is taken care of by the network.  Two direct benefits of this new
+  protocol are: (1) shortening the number of message delays from 4 to 2 in normal case (no view change), (2) relieving
+  the computation bottleneck at the leader. The trade-off here is that the client has to wait for a super-quorum (more
+  than majority) before returning, and that the reconciliation protocols (including rolling back states) are expensive
+  when replicas diverge due to message re-ordering.  
+  ![](../images/tp_lt.jpg) 
+
+  *Performance of Speculative Paxos (from [8]). Measured by increasing the number of closed-loop clients/threads (i.e.
+  increasing the offered load). Flatter to the right is better*
+
+  + _Consensus in a box_: [9] implements atomic broadcast (ZAB), which is similar to Paxos, in FPGAs (commonly 
+  used to implement network middleboxes). Its key insight is that FPGAs can process messages at line-rate, plus
+  application-specific network protocols (e.g. small-size messages, or point-to-point connections) can further boost the
+  performance. The paper is filled with low-level implementation details, and the comparison against software
+  implementation (Raft, Paxos) show expected gains.   
+
+  + _NOPaxos_: built by the same research group, [10] follows the same design principle of [8] by proposing a new
+  network primitive that greatly benefits Paxos. The primitive is Ordered Unreliable Multicast (OUM), which guarantees
+  ordered delivery or notification of message drop. It is realized via in-network serialization: instrumenting SDN to
+  route messages to a centralized network processor which serializes requests and sends them to the group. The new Paxos
+  protocol is more efficient than Speculative Paxos, because (1) client waits for smaller quorums of size $$f+1$$, (2)
+  guaranteed delivery means no reconciliation, no state roll-backs are needed. In case of unreliable delivery, i.e.
+  message dropped cannot be recovered, the replicas revert to committing a no-op operations. The results show better
+  throughput than Speculative Paxos, especially with message drop, and better latency (because of smaller quorums).  
+
 
 ### Recent works in Byzantine consensus
+Following is a list of recent works in Byzantine fault-tolerant systems. 
 
++ _Proof of work (or blockchain)_: Bitcoin [11], and recently Ethereum [12] usher in a wave of crypto-currency and
+blockchain systems. Targeting a decentralized, P2P system, a major contribution of these systems is their consensus
+protocols based on proof-of-works (PoW). The idea is incredibly simple: that the network select randomly at each round a
+node that proposes a value which the rest of the network adopts. Particularly, the probability of a node being selected
+is proportional to its ability to solve computation puzzles. The systems guarantees liveness, i.e. there will be
+solutions to the puzzles, but no safety. A value proposed by the selected node can only be agreed upon with a probability
+which can be made arbitrarily close to 1 after many rounds, unlike other BFT protocols which agreement (if reached) is
+absolute. PoW is computation bound (as opposed to other BFT protocols being communication bound), and its bottleneck is
+the overall hash power.  Translating to energy cost, it's been said that Bitcoin would consume as much electricity as
+the entire country of Denmark by 2020. 
+
+  Bitcoin's and Ethereum's popularity give strong evidence that fact that trading safety for liveness is acceptable in
+practice. In fact, in open, unauthenticated environments like the ones in which these system operate, PBFT and the
+related variants are not applicable. It is difficult to envision a completely safe protocol. Recent blockchain systems
+are moving towards a permissioned model with smaller numbers of authenticated nodes. And these _private blockchains_ are 
+turning to the literature for safe BFT protocols like PBFT (and the variants described below).   
+
++ _Separating agreement from execution_: $$3f+1$$ for agreement, but only $$g+1$$ for execution.  
++ _Employing trusted hardware_: $$2f+1$$ replicas, with $$f+1$$ quorum only.  
++ _Speculative BFT_: large quorums, but shorter delays (and potentially expensive view changes).  
++ _XFT_: distinguish network and node failure, assuming that they are uncorrelated. In other words, each view always
+consists of a synchronous majority groups of non-faulty replicas. Thus use $$f+1$$ quorum from partitions whose majority
+is non-faulty. 
+
+---
 [1] Raft: In search of an understandable consensus algorithm. https://raft.github.io/
 
-[2] UoW notes
+[2] UoW notes: http://courses.cs.washington.edu/courses/csep552/16wi/ 
 
-[3] MIT notes
+[3] MIT notes: http://people.csail.mit.edu/alinush/6.824-spring-2015/
 
 [4] Paxos
 
 [5] Viewstamped Replication
 
 [6] PBFT
+
+[7] Paxos made switch-y. CCR 2016. 
+
+[8] Designing Distributed Systems Using Approximate Synchrony in Data Center networks. NSDI 2015. 
+
+[9] Consensus in a box: inexpensive coordination in hardware. NSDI 2016. 
+
+[10] Just say NO to Paxos Overhead: replacing consensus with networking ordering. OSDI 2016. 
+
+[11] Bitcoin: a peer-to-peer electronic cash system.
+
+[12] Accelerating Bitcoin's transaction processing: fast money grows on tree not on chain. 
+
+[13] Separating agreement form execution fo Byzantine Fault Tolerant Services
+
+[14] Attested Append-Only memory: making adversaries stick to their words. 
+
+[15] CheapBFT: resource efficient Byzantine fault tolerance. 
+
+[16] XFT: pratical fault tolerance beyond crashes
