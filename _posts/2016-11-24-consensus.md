@@ -3,12 +3,12 @@ layout: post
 title: Consensus
 ---
 
-In the last 3 months I have finally came to face one of most important, yet most challenging (and feared) problem
-in distributed systems, namely _distributed consensus_. First raised in 1980s, the problem of getting a set of
-parties to agree on some value, remains an active area of research, with papers after papers appearing in
-top-tier systems conferences like SIGCOMM, NSDI, SOSP, OSDI. One may remark at the fact that researchers in
-the field have not reached a consensus on this decades-old consensus problem. Even without the human
-irrationality in the loop, the range of subtlety and unpredictability needed to be considered in solving
+Over the past 3 months I have finally came to face one of most important, yet most challenging (and feared)
+problems in distributed systems, namely _distributed consensus_. First raised in 1980s, the problem of getting
+a set of parties to agree on some value, remains an active area of research, with papers after papers
+appearing in top-tier systems conferences like SIGCOMM, NSDI, SOSP, OSDI. One may remark at the fact that
+researchers in the field have not reached a consensus on this decades-old consensus problem. Even without the
+human irrationality in the loop, the range of subtlety and unpredictability needed to be considered in solving
 consensus can perhaps be rivalled only by the human political systems. After all, there is no consensus on
 what is the best political system, and we as a race have worked on it since forever (and if this year is of
 any indication, we are failing specularly).  
@@ -80,17 +80,19 @@ or participants in the network are malicious.
 Paxos [4] and Viewstamped Replication (VR) [5] are the first two consensus protocols. They are essentially the
 same, with the latter being more easier to understand (and later implemented in Raft). 
 
-1. The system progresses through a sequence of _views_, each view consists of a leader and a set of follower.
++ The system progresses through a sequence of _views_, each view consists of a leader and a set of follower.
 The leader of view $$v$$ is the one with ID $$v \ mod\ n$$. 
-2. In each view:
++ In each view:
    + Client requests are sent to the leader. 
    + Upon receiving a request, the leader broadcasts it to the followers. 
    + The leader collects a _majority_ of matching responses from the follower, replies to the client and
    commits to the request.  
-3. View change is performed when either (1) leader fails, or (2) replicas time-out at processing requests. 
++ View change is performed when either (1) leader fails, or (2) replicas time-out at processing requests. 
    + View change protocol elects a new leader. 
    + It is the most subtle part of the protocols, as commits from previous views must carry over to the new
    views.  
++ Checkpointing of the states are done periodically, to make state transferring and view change more
+efficient (as replicas must broadcast logs of previous operations). 
 
 This is similar to two-phase commit, but instead of waiting for responses from all replicas (hence not
 fault-tolerant), the leader only waits for a _majority_.  
@@ -137,7 +139,7 @@ sent to the client. Specifically:
 at least $$2f+1$$ replicas (including itself) wanted a new view. Like in VR, view change is the most complex
 part of the protocol, and in this case it includes many large messages which carry signed proof and logs of
 previous operations.  
-
++ Checkpointing is carried out periodically, as in the non-Byzantine case. 
 
 **Why $$(3f + 1)$$ replicas**. To tolerate $$f$$ failures, at least $$3f+1$$ replicas are needed. This number
 is optimal. Suppose we only have $$2f+1$$ replicas and the protocol uses majority votes of $$f+1$$. Suppose
@@ -219,25 +221,87 @@ related variants are not applicable. It is difficult to envision a completely sa
 are moving towards a permissioned model with smaller numbers of authenticated nodes. And these _private blockchains_ are 
 turning to the literature for safe BFT protocols like PBFT (and the variants described below).   
 
-+ _Separating agreement from execution_: $$3f+1$$ for agreement, but only $$g+1$$ for execution.  
-+ _Employing trusted hardware_: $$2f+1$$ replicas, with $$f+1$$ quorum only.  
-+ _Speculative BFT_: large quorums, but shorter delays (and potentially expensive view changes).  
-+ _XFT_: distinguish network and node failure, assuming that they are uncorrelated. In other words, each view always
-consists of a synchronous majority groups of non-faulty replicas. Thus use $$f+1$$ quorum from partitions whose majority
-is non-faulty. 
++ _Separating agreement from execution_: [13] demonstrates two benefits of separating the origin PBFT into two
+sub-components: agreement and execution. One benefit is that it enables adding _privacy firewall_ between the
+two to ensure execution confidentiality. But the main advantage I'll discuss here is that it enhances
+modularity and helps reducing software errors that may lead to Byzantine failure. More importantly, it lowers
+quorum sizes for the servers that perform request execution. In particular, original PBFT protocol couples
+agreement and executing, thus requiring $$3f+1$$ replicas. When separated into an agreement cluster and
+an execution cluster, the former first agrees on the order and then forwards it to the latter. The quorum
+sizes are as follows: 
+
+  + $$3f+1$$ replicas in the agreement cluster to tolerate $$f$$ failures. 
+  + $$2g+1$$ replicas in the execution cluster to tolerate $$g$$ failures. Why is it this small? **Can 
+  Byzantine nodes lie about the next operation to be executed, like they can in the agreement cluster that
+  necessitates $$3f+1$$ replicas?** No. In the agreement cluster, the leader may be faulty, and it can join the
+  rest to lie about the next sequence number. But in the execution cluster, using the certified sequence
+  number, a non-faulty node can know if there are gaps in the sequence of operations it has executed, and catch up
+  or abort accordingly. Note here that faulty nodes cannot change the agreed sequence number, just we only
+  need a majority quorum.  
+
++ _Employing trusted hardware_: the insight from [13], that ordering makes Byzantine consensus more efficient
+(smaller quorums), is extended further in [14, 15] with help of trusted hardware. Both systems employ
+hardware to prevent (detect) server equivocation, which is the root cause for needing $$3f+1$$ in the
+agreement protocol. It can be seen that if a server cannot lie about sequence numbers it have proposed or
+executed, non-faulty nodes will always see and only agree on the latest sequence numbers. Enforcing
+unequivocation imposes serious handicap on Byzantine nodes, and like in [13], majority quorums out of $$2f+1$$ are
+sufficient to tolerate $$f$$ failures. Nevertheless, replicas incur extra overheads of detecting equivocation
+and of synchronous state-transferring during agreement.  
+
+  [15] implements the trusted components in FPGAs and demonstrates reasonable performance in normal cases. I
+  wonder if new hardware like Intel SGX can offer any improvement. 
+
++ _Speculative BFT_: [16] proposes a variant of PBFT that speculatively execute the requests, even before
+replicas reach agreement. The system, named Zyzzyva, delivers very high performance in normal cases, by
+shortening the number of message delays. Specifically:
+  + In the best case it uses 2 phases: leader broadcasts to the replicas, and the client collects $$3f+1$$ matching response.  
+  + When the client receives $$[2f+1, 3f+1)$$ matching response, it broadcasts a commit request and waits for
+  $$2f+1$$ responses from the replica. This is similar to the COMMIT phase (step 4) in the original PBFT,
+  which essentially makes sure that view change can make progress (or at least the honest node can detect
+  others which are lying). Output of the COMMIT phase is that each replica has _evidence_ that other $$2f$$
+  are also committing to this operation. Without it, Byzantine nodes can lie.  
+  
+  The view change protocol in Zyzzyva is rather involved, as it must compensate for the speculative execution
+  (in the best case the replicas do not know that their executions are accepted by the clients). Compared to
+  original PBFT, the client does more work.
+
++ _XFT_: [17] makes clear distinction of node versus network failures, reasoning that there has not been
+powerful Byzantine adversaries that can cause network disruption in wide scale. Thus, the paper define
+_anarchy_ as the system states where there are no correct ans synchronous majority of replicas, that is, the
+network is partitions and no partition contains the majority of non-faulty nodes. It then proposes XPaxos that
+works _outside anarchy_, i.e. there is a partition (within which the network is synchronous) containing at
+least $$f+1$$ non-faulty nodes. 
+
+  Under this assumption, it appears quite straightforward that a variant of non-Byzantine protocol would work.
+  In fact, XPaxos is very similar to Paxos, except that view change is carried out without a leader. This
+  decentralized view change protocol ensures ordering across view (though I don't fully understand why it
+  cannot be done with a leader).   The rather interesting part of how to select such synchronous partition for
+  each view, however, is not described adequately (said in the paper that synchronous group is pre-defined,
+  quite an unrealistic assumption).  The protocol is then evaluated against Paxos and other BFT protocols
+  including Zyzzyva.  Compared to other BFT, it is clearly better, due the use of only $$2f+1$$ replicas. It
+  is worse than Paxos, due to the overhead from cryptographic operations, since in Paxos no authentication is
+  needed. 
+
+  ![](../images/xft.jpg) 
+
+  *Performance of XPaxos (XFT) (from [17]). Measured by increasing the number of closed-loop clients/threads (i.e.
+  increasing the offered load). Flatter to the right is better*
 
 ---
+
+## References
+
 [1] Raft: In search of an understandable consensus algorithm. https://raft.github.io/
 
 [2] UoW notes: http://courses.cs.washington.edu/courses/csep552/16wi/ 
 
 [3] MIT notes: http://people.csail.mit.edu/alinush/6.824-spring-2015/
 
-[4] Paxos
+[4] Paxos made simple. 
 
-[5] Viewstamped Replication
+[5] Viewstamped replication revisited. 
 
-[6] PBFT
+[6] Practical Byzantine Fault Tolerance. OSDI 2009
 
 [7] Paxos made switch-y. CCR 2016. 
 
@@ -251,10 +315,12 @@ is non-faulty.
 
 [12] Accelerating Bitcoin's transaction processing: fast money grows on tree not on chain. 
 
-[13] Separating agreement form execution fo Byzantine Fault Tolerant Services
+[13] Separating agreement form execution fo Byzantine Fault Tolerant Services. SOSP 2003
 
-[14] Attested Append-Only memory: making adversaries stick to their words. 
+[14] Attested Append-Only memory: making adversaries stick to their words. SOSP 2007
 
-[15] CheapBFT: resource efficient Byzantine fault tolerance. 
+[15] CheapBFT: resource efficient Byzantine fault tolerance. Eurosys 2012. 
 
-[16] XFT: pratical fault tolerance beyond crashes
+[16] Zyzzyva: speculative Byzantine fault tolerance. SOSP 2007
+
+[17] XFT: pratical fault tolerance beyond crashes. OSDI 2016
