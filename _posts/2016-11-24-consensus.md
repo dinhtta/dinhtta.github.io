@@ -97,7 +97,7 @@ efficient (as replicas must broadcast logs of previous operations).
 This is similar to two-phase commit, but instead of waiting for responses from all replicas (hence not
 fault-tolerant), the leader only waits for a _majority_.  
 
-**Why $$(2f + 1)$$ replicas**. To tolerate $$f$$ crash failures, these protocols need $$2f+1$$ replicas. This
+**Why $$(2f + 1)$$ replicas (see notes at the end as well)**. To tolerate $$f$$ crash failures, these protocols need $$2f+1$$ replicas. This
 number is optimal, for the following reason. Because there can be $$f$$ failures, there must be at least
 $$f+1$$ in order for the request to be processed. If there is only 1 single agreement to be made, $$f+1$$ is
 sufficient. However, we want the system to _progress_ over multiple round, that is, whatever committed at
@@ -141,7 +141,7 @@ part of the protocol, and in this case it includes many large messages which car
 previous operations.  
 + Checkpointing is carried out periodically, as in the non-Byzantine case. 
 
-**Why $$(3f + 1)$$ replicas**. To tolerate $$f$$ failures, at least $$3f+1$$ replicas are needed. This number
+**Why $$(3f + 1)$$ replicas (see notes at the end as well)**. To tolerate $$f$$ failures, at least $$3f+1$$ replicas are needed. This number
 is optimal. Suppose we only have $$2f+1$$ replicas and the protocol uses majority votes of $$f+1$$. Suppose
 further that nodes $$0,1,..,f-1$$ are faulty. In round $$t$$, nodes $$f+1,..,2f$$ do not receive messages
 (because of temporary network partition, may be caused by the Byzantine nodes), and the operation
@@ -288,6 +288,32 @@ least $$f+1$$ non-faulty nodes.
   increasing the offered load). Flatter to the right is better*
 
 ---
+
+## Notes
+Let $$N, Q, f$$ be the number of replicas, quorum size and the maximum number of failures. While it is rather
+easy to derive $$Q$$ when $$N = 2f+1$$ (for non-Byzantine, or $$N = 3f+1$$ for Byzantine failures), the
+following details more general property of $$Q$$, especially with larger $$N$$. It shows that going beyond the
+minimum $$N$$ for tolerating $$f$$ may be worse for performance.
+
+**Non-Byzantine quorum size**
+
++ To ensure _liveness_, one must be able to make progress (quorum to decide) without waiting for $$f$$ failed
+nodes. That is, $$Q \leq N-f \leftrightarrow Q \geq \frac{N}{2} + 1$$ 
+
++ To ensure _safety_, two quorums must intersect. That is, $$2Q > N$$
+
+It follows that $$N < 2Q < 2(N-f)$$. It means $$f < \frac{N}{2}$$, or $$N> 2f$$. It means the minimum size of
+$$N$$ is $$2f+1$$, and in this case $$Q > \frac{N}{2}$$, or $$Q \geq f+1$$. 
+
+**Byzantine quorum size**
+
++ To ensure _liveness_, $$Q \leq N-f$$
+
++ To ensure _safety_, two quorums must intersect at at least $$f+1$$. That is $$2Q -f > N \leftrightarrow Q
+\geq \frac{N+f}{2} + 1$$.
+
+It follows that $$N < 2Q -f < 2(N-f)-f < 2N - 3f$$. It means $$f < \frac{N}{3}$$, or $$N \geq 3f+1$$. At the
+minimum size of $$N$$, i.e. $$N = 3f+1$$, we have $$Q \geq 2f+1$$.
 
 ## References
 
