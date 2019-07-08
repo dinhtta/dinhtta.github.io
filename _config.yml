@@ -6,10 +6,13 @@
 name: Anh Dinh 
 
 # Short bio or description (displayed in the header)
-description: Computer scientist, Arsenal supporter 
+description: Assistant Professor 
+affiliation: Singapore University of Technology and Design
+address: 8 Somapah Road, Singapore
+email: dinhtta@sutd.edu.sg
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
-avatar:  http://www.comp.nus.edu.sg/~dinhtta/anh.jpg 
+avatar: https://avatars0.githubusercontent.com/u/52648553?s=400&u=33bf43ceb747b352a78c425a336d1a12db64348c&v=4 
 #
 # Flags below are optional
 #
