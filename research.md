@@ -17,7 +17,7 @@ properties of P2P systems. My latest interest is centered around blockchains.
 * Hung Dang, Tien Tuan Anh Dinh, Dumitrel Loghin, Ee-chien Chang, Qian Lin, Beng Chin Ooi. Towards scaling blockchain via sharding. SIGMOD 2019
 
 ### 2018
-* Hung Dang, Tien Tuan Anh Dinh, Ee-chien Chang, Beng Chin Ooi. Chain of Trust: Can Trusted Hardware Helps Scaling Blockchains?. Arvix 2018
+* Hung Dang, Tien Tuan Anh Dinh, Ee-chien Chang, Beng Chin Ooi. Chain of Trust: Can Trusted Hardware Help Scaling Blockchains?. Arvix 2018
 * Sheng Wang, Tien Tuan Anh Dinh, Qian Lin, Zhongle Xie, Meihui Zhang, Qingchao Cai, Gang Chen, Wanzeng Fu, Beng Chin Ooi, Pingcheng Ruan. ForkBase: An Efficient Storage Engine for Blockchain and Forkable Applications. VLDB 2018
 * Tien Tuan Anh Dinh, Liu Rui, Meihui Zhang, Beng Chin Ooi, Ji Wang. Untangling blockchain: a data processing view of blockchain systems. TKDE 2018.
 
