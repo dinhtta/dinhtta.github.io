@@ -7,6 +7,7 @@ I have several research positions available, and am also looking for PhD student
 candidates are expected to work in the following topics:
 
 * IoT and edge computing
+* Vehicle to X (V2X) systems
 * Machine learning systems
 * Blockchain
 * Cloud-based and distributed systems
