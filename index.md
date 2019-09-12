@@ -21,6 +21,7 @@ in the networking and systems group. I got my PhD from the University of Birming
 of [Professor Mark Ryan](https://www.cs.bham.ac.uk/~mdr). 
 
 ## News
+* I am honoured to received *best paper award* at VLDB 2019. It's in the [news](https://www.comp.nus.edu.sg/news/3089-2019-vldb-bestpaper/).  
 * Checkout the recent [Dagstuhl seminar on blockchain](https://www.dagstuhl.de/en/program/calendar/semhp/?semnr=19261).
 * My work on sharding blockchain is presented at SIGMOD'19, in Amsterdam.
 * I have multiple research positions available. Checkout the [Jobs page](/jobs) for more details. 
