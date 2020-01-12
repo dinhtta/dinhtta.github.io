@@ -9,9 +9,11 @@ security and performance of large scale systems. My PhD was in applying formal m
 properties of P2P systems. My latest interest is centered around blockchains. 
 
 ## Publications
+### 2020
+* D. Loghin, S. Cai, G. Chen, T. T. A. Dinh, F. Fan, Q. Lin, J. Ng, B. C. Ooi, X. Sun, Q.-T. Ta, W. Wang, X. Xiao, Y. Yang, M. Zhang, Z. Zhang. The Disruptions of 5G on Data-driven Technologies and Applications. TKDE 2020 (to appear).
+* T. T. A. Dinh, A. Datta, B. C. Ooi. A blueprint for interoperable blockchains. Arvix 2020. 
 
 ### 2019
-* D. Loghin, S. Cai, G. Chen, T. T. A. Dinh, F. Fan, Q. Lin, J. Ng, B. C. Ooi, X. Sun, Q.-T. Ta, W. Wang, X. Xiao, Y. Yang, M. Zhang, Z. Zhang. The Disruptions of 5G on Data-driven Technologies and Applications. Arxiv 2019.
 * Dumitrel Loghin, Gang Chen, Tien Tuan Anh Dinh, Beng Chin Ooi, Yong Meng Teo. Blockchain goes green? An analysis of blockchain on low-power nodes. Arxiv 2019. 
 * Minh Quang Nguyen, Dumitrel Loghin, Tien Tuan Anh Dinh. Understanding the scalability of Hyperledger Fabric. BCDL @ VLDB 2019
 * Pingcheng Ruan, Gang Chen, Tien Tuan Anh Dinh, Qian Lin, Beng Chin Ooi, Meihui Zhang. Fine-grained, secure and efficient data provenance for blockchain systems. VLDB 2019
