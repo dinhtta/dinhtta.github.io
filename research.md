@@ -8,6 +8,13 @@ building and applying security primitives, either based on cryptography or trust
 security and performance of large scale systems. My PhD was in applying formal methods to verify security
 properties of P2P systems. My latest interest is centered around blockchains. 
 
+## Services
+I am frequently served as sub-reviewer for SIGMOD, VLDB, Usenix Security, SoCC, TKDE, WWW, ICDE, TCC.
+
+* 2020 PC member: ICDCS, SoCC, FAB
+* 2019 PC member: VLDB (industry track), BCDL@VLDB, ICICS
+* 2018 PC member: BTA (PC co-chair), ICPADS, BlockDB, BlockSEA
+
 ## Publications
 ### 2020
 * D. Loghin, S. Cai, G. Chen, T. T. A. Dinh, F. Fan, Q. Lin, J. Ng, B. C. Ooi, X. Sun, Q.-T. Ta, W. Wang, X. Xiao, Y. Yang, M. Zhang, Z. Zhang. The Disruptions of 5G on Data-driven Technologies and Applications. TKDE 2020 (to appear).
