@@ -17,6 +17,7 @@ I am frequently served as sub-reviewer for SIGMOD, VLDB, Usenix Security, SoCC, 
 
 ## Publications
 ### 2020
+* Daniël Reijsbergen, Tien Tuan Anh Dinh. On exploiting concurrency to speed up blockchain. ICDCS 2020.
 * D. Loghin, S. Cai, G. Chen, T. T. A. Dinh, F. Fan, Q. Lin, J. Ng, B. C. Ooi, X. Sun, Q.-T. Ta, W. Wang, X. Xiao, Y. Yang, M. Zhang, Z. Zhang. The Disruptions of 5G on Data-driven Technologies and Applications. TKDE 2020 (to appear).
 * T. T. A. Dinh, A. Datta, B. C. Ooi. A blueprint for interoperable blockchains. Arvix 2020. 
 
