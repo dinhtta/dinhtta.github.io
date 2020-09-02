@@ -7,7 +7,7 @@ author:
 description: ISTD 50.043 Website
 
 
-baseurl: 
+baseurl: _site
 
 # Build settings
 # permalink: :title/

@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="description" content="ISTD 50.043 Website">
+<meta name="author" content="">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>Database and Big Data Systems</title>
+
+<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Quorum Systems | Database and Big Data Systems</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Quorum Systems" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="During the course of my continuing struggle with PBFT, which deserves its own blog entry, I caught a reference to a term dissemination quorum. Previously content with the explanation of quorum being a fanciful term for describing a subset of nodes, of which the most common type is majority quorum, I followed the references rather reluctantly. And boy was I served a big humble pie." />
+<meta property="og:description" content="During the course of my continuing struggle with PBFT, which deserves its own blog entry, I caught a reference to a term dissemination quorum. Previously content with the explanation of quorum being a fanciful term for describing a subset of nodes, of which the most common type is majority quorum, I followed the references rather reluctantly. And boy was I served a big humble pie." />
+<link rel="canonical" href="http://localhost:4000/2017/09/04/quorum.html" />
+<meta property="og:url" content="http://localhost:4000/2017/09/04/quorum.html" />
+<meta property="og:site_name" content="Database and Big Data Systems" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-09-04T00:00:00+08:00" />
+<script type="application/ld+json">
+{"headline":"Quorum Systems","dateModified":"2017-09-04T00:00:00+08:00","datePublished":"2017-09-04T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2017/09/04/quorum.html"},"description":"During the course of my continuing struggle with PBFT, which deserves its own blog entry, I caught a reference to a term dissemination quorum. Previously content with the explanation of quorum being a fanciful term for describing a subset of nodes, of which the most common type is majority quorum, I followed the references rather reluctantly. And boy was I served a big humble pie.","@type":"BlogPosting","url":"http://localhost:4000/2017/09/04/quorum.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<link rel="stylesheet" href="/css/custom.css">
+<script src="https://code.jquery.com/jquery-3.3.0.min.js" integrity="sha256-RTQy8VOmNlT6b2PIRur37p6JEBZUE7o8wPgMvu18MC4=" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+    
+<!--[if lt IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" integrity="sha256-3Jy/GbSLrg0o9y5Z5n1uw0qxZECH7C6OQpVBgNFYa0g=" crossorigin="anonymous"></script>
+<![endif]-->
+
+  <body>
+    <header>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">ISTD 50.043</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Syllabus</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/schedule">Schedule</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/project">Project</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header> 
+
+    
+    <main role="main">
+      
+      <div class="container course_content">
+        <p>During the course of my continuing struggle with PBFT, which deserves its own blog entry, I caught a reference
+to a term <em>dissemination quorum</em>. Previously content with the explanation of quorum being a fanciful term for
+describing a subset of nodes, of which the most common type is majority quorum, I followed the references
+rather reluctantly. And boy was I served a big humble pie.</p>
+
+<p>The idea of quorums and quorum system dates as far back as the time when computer failures were recognized as
+a real problem. It exists before FLP, before Paxos, and by extension, long before PBFT. The reason why it
+rarely surfaces can be attributed to its theoretical nature. And similar to FLP, its popularity was eclipsed
+by the popularity of later work that take the theoretical results and make them more practical. Studies of
+quorum systems pave the way for Paxos, PBFT and many other work in making distributed systems tolerant to
+failures. The paper being dissected in this post is Malkhi et. al.’s “Byzantine quorum systems” published in
+1997 (2 years before Castro et al.’s PBFT).</p>
+
+<h2 id="what-is-a-quorum">What is a quorum?</h2>
+
+<p>Given a set of node \(U\), a quorum system is a set of subsets of \(U\) (or quorums) in which <strong>any two quorums
+intersect</strong>. More formally, \(Q\) is a quorum system defined as \(Q \subseteq \mathbb{P}(U) \ \wedge \ \forall q_1, q_2
+\in Q [ q_1 \ \cap \ q2 \neq \emptyset ]\)</p>
+
+<h2 id="examples">Examples</h2>
+
+<p>A set of majority subsets in \(U\) is a quorum system. In fact, it is the most common instance of quorum systems,
+found most often in fault-tolerant protocols. Paxos, in particular, relies on quorums of size \(f+1\) in network of
+\(2f+1\) nodes. However, there are other examples whose quorums are not majority set.</p>
+
+<p><img src="../images/quorums.jpg" alt="quorums" /></p>
+
+<p>The figure above illustrates two quorum systems derived from \(U\) of 16 nodes. The first system, called majority
+quorum, is made up of majority-set quorums wherein each quorum is of size 9. The second, called grid quorum, consists of
+quorums of size 7, but each pair always intersects at least 2 nodes. There are \(|U|\) quorums in this example, where
+\(q_{ij}\) comprises node in row \(i\) and column \(j\).</p>
+
+<h2 id="why-quorums-are-useful">Why quorums are useful</h2>
+<p>Quorums are useful in the context of replicated systems, be it a replicated storage or a more general
+replicated state machine. A quorum serves as a representative of the entire system, and it can service client
+requests on behalf the system. It means that a client needs only to contact the nodes in a quorum, as opposed
+to all the nodes. And thanks to quorum intersection, updates made in one quorum can be made consistent by
+propagating them to the rest of the network. Two immediate benefits are:</p>
+
+<ol>
+  <li>
+    <p>Performance via load balancing: two client requests may be served concurrently by two quorums, and the busy
+nodes can be opted-out of the serving quorum until its load goes down.</p>
+  </li>
+  <li>
+    <p>Fault tolerance: the system continue to work even when there are node failures, as long as a quorum is
+still available. Original quorum systems were designed for crash-failure, which exploits quorum intersection
+to keep failed nodes up-to-date once they are recovered. In Byzantine settings, that faulty nodes can
+infiltrate quorums requires more complex reasoning and imposes more conditions on quorums — exactly what
+Malkhi et. al. set out to do in their paper.</p>
+  </li>
+</ol>
+
+<h2 id="quorum-systems">Quorum systems</h2>
+<p>Properties of a quorum system can only be discussed under specific application model, and under specific
+failure model. As discussed below, these models are very abstracted, and therefore rather simplistic. One
+reason may be that when the idea was first proposed, large-scale distributed systems and their glorious
+complexity did not yet exist, thus these models could be considered realistic. Regardless, the abstract models
+make it easy to analyze the system formally.</p>
+
+<h3 id="apis">APIs</h3>
+<p>A quorum system exposes shared read/write register over multiple client. In today’s terms, it is treated as a
+remote storage with read/write APIs accessible by many clients. Let \(Q\) be a random quorum; it truly doesn’t
+matter which quorum, only that it is of a certain sizes.</p>
+
+<ul>
+  <li>
+    <p><strong>Write</strong>: the client queries all nodes \(n in Q\) for a set of timestamps \(\{t_i\}\). It then picks \(t =
+max(\{t_i\})\) and computes \(t' &gt; t\) in a way that two clients’ picks are not the same. Finally, it sends
+the data to \(Q\) and waits until it is acknowledged by all nodes in \(Q\).</p>
+  </li>
+  <li>
+    <p><strong>Read</strong>: the clients queries \(Q\) for a set of \(\{(v_i, t_i)\}\). It runs this set through a function
+\(Result(.)\) which returns the correct value.</p>
+  </li>
+</ul>
+
+<p>The write API, in practical terms, is not very efficient because it is interactive, requiring many rounds of
+communication. Modern storage systems, for instance, incur only 1 round of communication by dedicate primary
+nodes to serve requests of specific ranges. The quorum write API is simple, but more importantly it removes
+additional trust assumed on the primary nodes. As for read API, details of $$Result(.)$ depends on assumptions
+about data property, namely if the data is tamper proof (integrity protect).</p>
+
+<p><strong>Safety</strong> property is defined as read returns the latest write, providing that there is no concurrent write. The
+first phase is similar to cache coherency, but the second imposes a condition that renders it a weaker
+guarantee. I will come back to this later.</p>
+
+<h2 id="unauthenticated-data---masking-quorum">Unauthenticated Data - Masking Quorum</h2>
+<p>Suppose there are up to \(f\) Byzantine nodes, and they can lie about what data they store. In particular,
+these nodes may return \(\{(v_i, t_i)\}\) that were never sent by the client. In other words, updates
+by the client are not integrity protected, which happens when client identity is not known (no PKI
+certificate).</p>
+
+<p>Now what would it take to achieve safety in this case, with up to \(f\) failures. Let \(B\) be the set of
+\(f\) faulty nodes. Then,</p>
+
+<ol>
+  <li>The correct tuple is \(C = (t_c, v_c) = Q_w \cap Q_r \setminus B\).</li>
+  <li>The set of out-of-date tuples is \(O = \{(t_o, v_o)\} = Q_w \setminus (Q_r \cup B)\).</li>
+  <li>The set of arbitrary tuples generated by the adversary is \(A = \{(t^*, v^*)\} = Q_r \cap B\)</li>
+</ol>
+
+<p>The client can distinguish \(C\) from \(O\) because the former has higher timestamps. However, \(A\) may also
+has higher timestamps, <em>because the faulty nodes can forge tuple without being detected</em>. Thus, the client
+must be able to identify \(t_c\) from \(t^*\). Because \(|A| \leq |B|\), one way to do it (here I’m not sure if
+it’s the only way) is to make sure that \(|C| &gt;  |B|\). More specifically:</p>
+
+\[|Q_w \cap Q_r \setminus B| &gt; |B| \leftrightarrow |Q_w \cap Q_r| &gt; 2.f\]
+
+<p>Any quorum system satisfies the above condition for any pair of its quorum is called <em>masking quorum</em>.</p>
+
+<p>Essentially, a masking quorum system guarantees any two quorum intersects at at least \(2f+1\) nodes. One
+example is a system of \(4f+1\) nodes wherein a quorum consists of \(3f+1\) nodes. It took me a while to understand the
+intuition behind the intersection size of at least \(2f+1\).</p>
+
+<ul>
+  <li>
+    <p>First, suppose the quorum intersects at \(f\) nodes. How would the client identify which response tuples
+are correct? It simply cannot. Without failure, the correct tuples are \(f\) tuples with the same, largest timestamp.
+But faulty nodes can forge these tuples.</p>
+  </li>
+  <li>
+    <p>Second, suppose the intersection consists of  \(f+k\) nodes, i.e. at least one correct node is in the intersection.
+The client must choose from a subset of of \(f+k\). But it cannot use any subset smaller than \(f+1\), because no matter
+what the condition for selection is, the faulty nodes can satisfy it by forging tuples. So the selection must based on
+\(f+1\) tuples being equal.</p>
+    <ul>
+      <li>For \(k &lt; f+1\), the faulty nodes can make sure that this never happen because it controls
+up to \(f\) of them. As the result the read operation fails — failing is not really tolerating failures (the quorum is
+still reachable, the number of failures is within permitted threshold, yet it fail!).</li>
+      <li>With \(k \geq f+1\), however, it is possible to correctly identify the set of \(f+1\) tuples of the same timestamp
+  as coming from the non-faulty nodes. The faulty nodes cannot form such a set.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Thus, in order for the client to identify correct tuples, the intersection size is at least \(2f+1\).</p>
+
+<h2 id="authenticated-data---dissemination-quorum">Authenticated Data - Dissemination Quorum</h2>
+<p>In a masking quorum system, the client has no means of checking if \((t,v)\) returned from a node in a quorum was a
+genuine tuple put their by a previous client. Because of this, quorums intersecting at \(f+1\), for example, are unable
+to mask Byzantine failures</p>
+
+<p>Now, suppose \((t,v)\) is verifiable by the client performing read, which could be achieved by signing the tuple with
+the write client’s public key (assuming it comes with a PKI certificate), or by appending a MAC for which both clients
+know the key. With this, the adversary cannot response to a read operation with arbitrary tuples without being detected,
+although it can reply with out-of-date tuples. Let’s go through the reasoning about quorum intersection</p>
+
+<ol>
+  <li>The correct tuple is \(C = (t_c, v_c) = Q_w \cap Q_r \setminus B\).</li>
+  <li>The set of out-of-date tuples is \(O = Q_w \setminus C\).</li>
+</ol>
+
+<p>The client can easily identify the correct tuple as one with the largest timestamp. For this, \(C\) is a non-empty set,
+i.e. \((Q_w \cap Q_r) \setminus B \neq \emptyset\). Because \(|B| = f\), this condition is the same as \(|Q_w \cap Q_r|
+\geq f+1\). A quorum system where that condition holds is called a <em>dissemination quorum</em>. It guarantees that any two
+quorum intersects at at least \(f+1\) nodes. One example is the PBFT quorum, with \(3f+1\) nodes and quorum size of
+\(2f+1\).</p>
+
+<p>Intuitively, the intersection must be more than \(f\) nodes. Unlike in masking quorum system, the adversary cannot
+forge any tuple \((t^*, v^*)\) because it cannot produce correct signature or MAC for that tuple. However, it can
+<em>replay</em> tuples with old timestamp, thus successfully discarding new updates. A read operation in this case will not see
+the latest write. With \(f+1\) nodes in the intersection, however, there is at least 1 correct node that responses with
+timestamp \(t_c\). The adversary responding arbitrarily can be detected as faulty and exclude from the selection (and
+more action can be taken to isolate that node). As the result, it can either reply with the same tuples, i.e. not
+behaving badly, or with an old tuple with timestamp \(t_o\).</p>
+
+<h2 id="quorum-vs-paxos-vs-pbft">Quorum vs. Paxos vs. PBFT</h2>
+<p>A quorum system serve as the base from which consensus protocol such as Paxos and PBFT are built. Quorum’s
+safety property is necessary to achieve that of Paxos and PBFT. Let’s examine how they differ more closely.</p>
+
+<p><strong>Size of the intersection.</strong> PBFT uses dissemination quorums: \((2f+1)\)-node quorums to mask \(f\) faulty
+nodes in a \((3f+1)\)-node network.  With crash failures (Paxos), a quorum system’s safety is guaranteed as long as
+\(Q_w \cap Q_r \neq \emptyset\), or \(|Q_w \cap Q_r| \geq 1\). For write to be successful, it also requires
+\(|Q_w| &gt; f\) so that at least one update survive. As a result, the condition to mask \(f\) crash failures is:</p>
+
+\[\forall Q_1,Q_2\,.\, |Q_1| \cap |Q_2| \geq 1 \cap |Q_1| \geq f \cap |Q_2| \geq f\]
+
+<p>Paxos uses quorums satisfying the above condition: quorums of \(f+1\) nodes in a \(2f+1\)-node system.</p>
+
+<p><strong>Safety semantics.</strong> Recall quorum’s safety is the following:</p>
+
+<blockquote>
+  <p>Reads see the latest writes, <strong>provided there are no concurrent writes</strong></p>
+</blockquote>
+
+<p>Note the emphasis, which implies that two reads may return different values when there are concurrent writes.
+Suppose the latest write has \(X=3\), and a write operation is updating \(X=4\). The write is sending updates
+to quorum \(Q\) and half of the nodes, say \(Q_h\) in the quorum have received updates. Two concurrent reads are contacting
+two quorums \(Q_1\) and \(Q_2\), where \(Q_1 \cap Q \subseteq Q_h\), but \(Q_2 \cap Q \cap Q_h = \emptyset\).
+The first sees \(X=4\), but the second sees \(X=3\) since updates have not propagated to the intersection.</p>
+
+<p>Both Paxos and PBFT are design to prevent the scenarios like above.</p>
+
+<blockquote>
+  <p>Reads see the latest writes.</p>
+</blockquote>
+
+<p>The protocols go through multiple phases to make sure that all quorums see the latest commit or nothing at
+all. PBFT, in particular, executes Pre-prepare, Prepare and Commit phase and only considers a write successful
+after all nodes in the quorum commit. After this, all reads will return the latest — same as a quorum
+system. But during the three phases (concurrent writes), reads will return the latest committed value, not
+the one being committed. This update atomicity makes it easier to reason about the system state, since it
+mirrors what is expected in a single-node system: before any write finishes, read returns the previous value.
+Technically a quorum system can be enhanced to have atomicity, by changing its APIs to obtain a global lock
+before any operation.  However, implementing the global lock requires something like Paxos or PBFT.</p>
+
+      </div>
+    </main>
+
+    <footer class="container">
+  <p class="float-right"><a href="#">Back to top</a></p>
+  <p>
+    &copy; SUTD &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a>
+  </p>
+
+  <!-- 
+    <p>Project maintained by <a href="https://github.com/ucbrise">ucbrise</a></p>
+  
+  <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/mattgraham">mattgraham</a></small></p> -->
+</footer>
+
+
+
+
+
+
+  </body>
+</html>
+
