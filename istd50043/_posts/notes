@@ -1,0 +1,42 @@
+\beta-bound adversary -> mining power
+
+
+1. Decker et al. -> effective mining power depends on propagation delays
+    Why Bitcoin isn't 50% tolerant, but 49.1 
+
+2. Asymmetrical reward: selfish mining
+    -> maximizing relative rewards to lure honest miner
+    -> adversary still minority, but induces conflict whenever it has advantage
+    -> algorithms:
+    -> \alpha and \gamma effect the relative revenues
+
+2.5. Digression on rational players vs. simple honest/malicious dichotomy
+
+3. Bitcoin in synchronous setting  
+  -> propagation delay = 0
+  -> Bitcoin backbone protocol:
+        f = block interval
+        \alpha
+        \beta
+  -> desynchronized: increase f
+  -> common prefix, chain quality
+  -> key idea behind: unique successful round to force adversary to generate even more block -> impossible
+  -> results:
+        \alpha, \beta
+  -> meaning
+      + small f -> bound of \beta
+      + large f (delay / high rate) -> bound on \beta -> 0
+      + graph
+
+4. Bitcoin in bounded-delay/partial synchrony model:
+  -> extending theorem with \delta
+  -> both f*\delta need to be small
+
+5. More quantitative model (Gervais) that quantifies impacts of various parameters on selfish mining attacks
+  -> some real measurements of Bitcoin, ETH and other PoW variants
+  -> same conclusion as 3,4:
+      + propagation delay effects stale block rates -> security
+      + block interval effects stale block -> security
+  -> new:
+      + blocksize increases propagation delay *linearly*, then *exponentially*
+      => there should be a cap

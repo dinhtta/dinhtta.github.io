@@ -1,0 +1,16 @@
+# theme: jekyll-theme-leap-day
+
+# Site settings
+title: Database and Big Data Systems
+email: jegonzal@berkeley.edu 
+author:
+description: ISTD 50.043 Website
+
+
+baseurl: 
+
+# Build settings
+# permalink: :title/
+sass:
+  sass_dir: css
+

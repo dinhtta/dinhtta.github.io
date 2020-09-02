@@ -1,0 +1,38 @@
+{% if lecture_counter %}
+</td>
+</tr>
+{% else %}
+   {% assign lecture_counter = 0 %}
+{% endif %}
+
+
+{% assign odd_lecture = lecture_counter | modulo: 2 %}
+{% assign week = lecture_counter | divided_by: 1.0 | floor | plus: 1 %}
+{% assign lecture_index = lecture_counter | minus: 1 %}
+{% assign lecture_date = dates[ lecture_index ] %}
+
+
+
+
+
+{% if lecture_counter == 0 %}
+<tr style="border-bottom: solid thick; border-top: solid thick">
+    <td style="background:gray; color:white; font-size:16pt; vertical-align:middle;" id="week_{{week}}"> 
+    <center>{{ week }}</center> 
+    </td>
+{% else %}
+{% if odd_lecture >=0 %}
+<tr style="border-bottom: solid thick;">
+    <td rowspan="1" style="background:gray; color:white; font-size:16pt; vertical-align:middle;" id="week_{{week}}"> 
+    <center>{{ week }}</center> 
+    </td>
+{% else %}
+<tr>
+{% endif %}
+{% endif %}
+
+
+{% assign lecture_counter = lecture_counter | plus: 1 %} 
+<td markdown="1">
+
+
