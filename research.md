@@ -9,8 +9,8 @@ security and performance of large scale systems. My PhD was in applying formal m
 properties of P2P systems. My latest interest is centered around blockchains. 
 
 ## Services
-I am frequently served as sub-reviewer for SIGMOD, VLDB, Usenix Security, SoCC, TKDE, WWW, ICDE, TCC.
-* 2021 PC member: SIGMOD
+I frequently serve as sub-reviewer for SIGMOD, VLDB, Usenix Security, SoCC, TKDE, WWW, ICDE, TCC.
+* 2021 PC member: SIGMOD, BlockDM
 * 2020 PC member: ICDCS, SoCC, FAB
 * 2019 PC member: VLDB (industry track), BCDL@VLDB, ICICS
 * 2018 PC member: BTA (PC co-chair), ICPADS, BlockDB, BlockSEA
@@ -19,6 +19,7 @@ I am frequently served as sub-reviewer for SIGMOD, VLDB, Usenix Security, SoCC, 
 ### 2020
 * Pingcheng Ruan, Tien Tuan Anh Dinh, Qian Lin, Meihui Zhang, Gang Chen, Beng Chin Ooi. Revealing Every Story of Data in Blockchain Systems. SIGMOD 2020 Research Highlight Award. 
 * Daniël Reijsbergen, Tien Tuan Anh Dinh. On exploiting concurrency to speed up blockchain. ICDCS 2020.
+* Qian Lin, Kaiyuan Yang, Tien Tuan Anh Dinh, Qingchao Cai, et al.  ForkBase: Immutable, Tamper-evident Storage Substrate for Branchable Applications. ICDE 2020
 * D. Loghin, S. Cai, G. Chen, T. T. A. Dinh, F. Fan, Q. Lin, J. Ng, B. C. Ooi, X. Sun, Q.-T. Ta, W. Wang, X. Xiao, Y. Yang, M. Zhang, Z. Zhang. The Disruptions of 5G on Data-driven Technologies and Applications. TKDE 2020 (to appear).
 * T. T. A. Dinh, A. Datta, B. C. Ooi. A blueprint for interoperable blockchains. Arvix 2020. 
 
