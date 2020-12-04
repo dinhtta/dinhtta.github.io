@@ -10,7 +10,7 @@ properties of P2P systems. My latest interest is centered around blockchains.
 
 ## Services
 I frequently serve as sub-reviewer for SIGMOD, VLDB, Usenix Security, SoCC, TKDE, WWW, ICDE, TCC.
-* 2021 PC member: SIGMOD, BlockDM
+* 2021 PC member: SIGMOD, BlockDM, ICDCS
 * 2020 PC member: ICDCS, SoCC, FAB
 * 2019 PC member: VLDB (industry track), BCDL@VLDB, ICICS
 * 2018 PC member: BTA (PC co-chair), ICPADS, BlockDB, BlockSEA
