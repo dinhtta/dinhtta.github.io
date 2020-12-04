@@ -4,7 +4,7 @@ permalink: /teaching/
 ---
 * Systems Security [SUTD, 2020]
 * Capstone [SUTD, 2020]
-* Databases and Big Data Systems [SUTD, 2019]
+* Databases and Big Data Systems [SUTD, 2019, 2020]
 * Capstone [SUTD, 2019]
 * Design and Analysis of Algorithms [NUS, 2018]
 * Advanced Topics on Database Systems [NUS, 2016-2018]
