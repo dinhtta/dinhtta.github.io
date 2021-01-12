@@ -9,13 +9,17 @@ security and performance of large scale systems. My PhD was in applying formal m
 properties of P2P systems. My latest interest is centered around blockchains. 
 
 ## Services
-I frequently serve as sub-reviewer for SIGMOD, VLDB, Usenix Security, SoCC, TKDE, WWW, ICDE, TCC.
-* 2021 PC member: SIGMOD, BlockDM, ICDCS
+I frequently serve as sub-reviewer for SIGMOD, VLDB, VLDBJ, Usenix Security, SoCC, TKDE, WWW, ICDE, TCC.
+* 2021 PC member: SIGMOD, BlockDM, ICDCS, FAB
 * 2020 PC member: ICDCS, SoCC, FAB
 * 2019 PC member: VLDB (industry track), BCDL@VLDB, ICICS
 * 2018 PC member: BTA (PC co-chair), ICPADS, BlockDB, BlockSEA
 
 ## Publications
+### 2021
+* Pingcheng Ruan, Tien Tuan Anh Dinh, Dumitrel Loghin, Meihui Zhang, Gang Chen, Qian Lin, Beng Chin Ooi.
+Blockchains vs. Distributed Databases: Dichotomy and Fusion. SIGMOD 2021.
+
 ### 2020
 * Pingcheng Ruan, Tien Tuan Anh Dinh, Qian Lin, Meihui Zhang, Gang Chen, Beng Chin Ooi. Revealing Every Story of Data in Blockchain Systems. SIGMOD 2020 Research Highlight Award. 
 * Daniël Reijsbergen, Tien Tuan Anh Dinh. On exploiting concurrency to speed up blockchain. ICDCS 2020.
