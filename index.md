@@ -21,6 +21,7 @@ in the networking and systems group. I got my PhD from the University of Birming
 of [Professor Mark Ryan](https://www.cs.bham.ac.uk/~mdr). 
 
 ## News
+* I am actively looking for PhD students, research assistants, engineers, and research fellows. Check out the [Jobs page](/jobs) and drop me an email.  
 * The Singapore Blockchain Innovation Programme has launched. [We are hiring!](https://sbip.sg/category/careers/)
 * I am a guest editor for SI on [Data Science for Next-generation Big Data (ACM TDS)](https://dl.acm.org/pb-assets/static_journal_pages/tds/pdf/tds-cfp-special-issue-data-science-next-gen-big-data-1603646817537.pdf). Do consider submitting. 
 * Apache SINGA ~~(Incubating)~~ is now a top-level project. [First from the region.](https://www.straitstimes.com/tech/nus-teams-ai-system-first-from-southeast-asia-to-enter-ranks-of-worlds-top-open-source-software?fbclid=IwAR2AgdO-DVMcC9Pcz3aroFdDwUsGkV3cdMS2Iq0Gf5x6QHIy1D68p0_zuI8)
