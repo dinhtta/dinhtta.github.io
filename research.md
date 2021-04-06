@@ -10,6 +10,7 @@ properties of P2P systems. My latest interest is centered around blockchains.
 
 ## Services
 I frequently serve as sub-reviewer for SIGMOD, VLDB, VLDBJ, Usenix Security, SoCC, TKDE, WWW, ICDE, TCC.
+* 2022 PC member: VLDB
 * 2021 PC member: SIGMOD, Eurosys (AEC), BlockDM, ICDCS, FAB
 * 2020 PC member: ICDCS, SoCC, FAB
 * 2019 PC member: VLDB (industry track), BCDL@VLDB, ICICS
@@ -17,6 +18,7 @@ I frequently serve as sub-reviewer for SIGMOD, VLDB, VLDBJ, Usenix Security, SoC
 
 ## Publications
 ### 2021
+* Daniël Reijsbergen, Yeng Zhang, Augn Maw, Tien Tuan Anh Dinh, Jianying Zhou. Towards transparent pricing with privacy. ESORICS 2021.  
 * Pingcheng Ruan, Tien Tuan Anh Dinh, Dumitrel Loghin, Meihui Zhang, Gang Chen, Qian Lin, Beng Chin Ooi.
 Blockchains vs. Distributed Databases: Dichotomy and Fusion. SIGMOD 2021.
 
