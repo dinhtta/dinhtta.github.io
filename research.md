@@ -18,6 +18,7 @@ I frequently serve as sub-reviewer for SIGMOD, VLDB, VLDBJ, Usenix Security, SoC
 
 ## Publications
 ### 2021
+* Zheng Yang, Chenglu Jin, Jianting Ning, Zengpeng Li, Tien Tuan Anh Dinh, Jianying Zhou. Group Time-based One-time Passwords and its Application to Efficient Privacy-Preserving Proof of Location. ACSAC 2021
 * Daniël Reijsbergen, Yeng Zhang, Augn Maw, Tien Tuan Anh Dinh, Jianying Zhou. Towards transparent pricing with privacy. ESORICS 2021.  
 * Pingcheng Ruan, Tien Tuan Anh Dinh, Dumitrel Loghin, Meihui Zhang, Gang Chen, Qian Lin, Beng Chin Ooi.
 Blockchains vs. Distributed Databases: Dichotomy and Fusion. SIGMOD 2021.
