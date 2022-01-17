@@ -10,13 +10,17 @@ properties of P2P systems. My latest interest is centered around blockchains.
 
 ## Services
 I frequently serve as sub-reviewer for SIGMOD, VLDB, VLDBJ, Usenix Security, SoCC, TKDE, WWW, ICDE, TCC.
-* 2022 PC member: VLDB, ICDE, DASFAA
+* 2023 PC member: SIGMOD
+* 2022 PC member: VLDB, ICDE, DASFAA, Eurosys (AEC)
 * 2021 PC member: SIGMOD, Eurosys (AEC), BlockDM, ICDCS, FAB
 * 2020 PC member: ICDCS, SoCC, FAB
 * 2019 PC member: VLDB (industry track), BCDL@VLDB, ICICS
 * 2018 PC member: BTA (PC co-chair), ICPADS, BlockDB, BlockSEA
 
 ## Publications
+### 2022
+* Yuncheng Wu, Tien Tuan Anh Dinh, Guoyu Hu, Meihui Zhang, Yeow Meng Chee, Beng Chin Ooi. Serverless Data Science - Are We There Yet? A Case Study of Model Serving. SIGMOD 2022
+
 ### 2021
 * Zheng Yang, Chenglu Jin, Jianting Ning, Zengpeng Li, Tien Tuan Anh Dinh, Jianying Zhou. Group Time-based One-time Passwords and its Application to Efficient Privacy-Preserving Proof of Location. ACSAC 2021
 * Daniël Reijsbergen, Yeng Zhang, Augn Maw, Tien Tuan Anh Dinh, Jianying Zhou. Towards transparent pricing with privacy. ESORICS 2021.  
