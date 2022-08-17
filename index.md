@@ -21,6 +21,7 @@ in the networking and systems group. I got my PhD from the University of Birming
 of [Professor Mark Ryan](https://www.cs.bham.ac.uk/~mdr). 
 
 ## News
+* A Data Engineering Bulletine issue on transparent databases, for which I was the guest editor, is [now available](http://sites.computer.org/debull/A22june/A22JUNE-CD.pdf). 
 * My research team won the inaugural Singapore Blockchain Innovation Programme (SBIP) hackathon.
 [Congratulations to Daniel and Aung
 Maw](https://istd.sutd.edu.sg/news-events/event/news/congratulations-to-research-team-of-assistant-professor-dinh-tien-tuan-anh-who-won-the-first-prize-enthusiast-track-of-singapore-blockchain-hackathon-2021/)
