@@ -18,8 +18,10 @@ I frequently serve as sub-reviewer for SIGMOD, VLDB, VLDBJ, Usenix Security, SoC
 * 2018 PC member: BTA (PC co-chair), ICPADS, BlockDB, BlockSEA
 
 ## Publications
+
 ### 2023
 * Daniel Reijsbergen, Aung Maw, Zheng Yang, Tien Tuan Anh Dinh, Jianying Zhou. TAP: transparent and privacy-presrving data services. USENIX Security 2023
+
 ### 2022
 * Yuncheng Wu, Tien Tuan Anh Dinh, Guoyu Hu, Meihui Zhang, Yeow Meng Chee, Beng Chin Ooi. Serverless Data Science - Are We There Yet? A Case Study of Model Serving. SIGMOD 2022
 * Zheng Yang, Tien Tuan Anh Dinh, Yingying Yao, Dianshi Yang, Xiaolin Chang, Jianying Zhou. LARP: a lightweight auto-refreshing pseudonym protocol for V2X. SACMAT 2022 
