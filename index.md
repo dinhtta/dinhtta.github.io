@@ -5,7 +5,7 @@ layout: default
 My full name, in Vietnamese, is Dinh Tien Tuan Anh. In research publication, I go by the name "Tien Tuan Anh Dinh". In
 life, people call me Anh. 
 
-I am currently a senior lecture (cyber security) at Deakin University.
+I am currently a senior lecturer (cyber security) at Deakin University.
 Previously I was a tenure-track faculty at the Singapore University of
 Technology and Design, in the Information System and Technology Design (ISTD)
 pillar. My research lies at the intersection of distributed systems, databases
