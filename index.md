@@ -2,27 +2,12 @@
 layout: default
 ---
 
-#My full name, in Vietnamese, is Dinh Tien Tuan Anh. In research publication, I go by the name "Tien Tuan Anh Dinh". In
-#life, people call me Anh. 
-
 I am a senior lecturer (cyber security) at Deakin University.  Previously I was a tenure-track faculty at the Singapore
 University of Technology and Design, in the Information System and Technology Design (ISTD) pillar. I am interested in
 performance and security aspects of distributed systems (including blockchains, databases, and cloud-native systems).  I
 am a recipient of VLDB 2019's best paper award, and MM'15 best paper runner up award. I serve as associate editor of
 VLDB 2024, and am a regular PC member of SIGMOD, ICDE, SoCC, NDSS.   
 
-
-#My PhD was in applying formal methods to
-#verify security properties of P2P systems. My latest interest is centered
-#around blockchains. 
-
-#Prior to this, I was a senior research fellow at the National University of Singapore (NUS), working with
-#[Professor Ooi Beng Chin](https://www.comp.nus.edu.sg/~ooibc) on databases and security. Before that, I was a research fellow at Nanyang
-#Technological University (NTU), also in Singapore, working with [Professor Anwitaman
-#Datta](https://www.ntu.edu.sg/home/anwitaman) and cloud-based
-#systems. I spent few months at Singtel as a research engineer. I also spent four months at Microsoft Research
-#in the networking and systems group. I got my PhD from the University of Birmingham, UK, under the supervision
-#of [Professor Mark Ryan](https://www.cs.bham.ac.uk/~mdr). 
 
 ## News
 * I co-chair the first [workshop on verifable database system (VDBS)](https://veridbsys.github.io/), which is colocated with SIGMOD 2023.  
