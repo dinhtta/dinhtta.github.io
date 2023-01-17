@@ -20,6 +20,7 @@ I frequently serve as sub-reviewer for SIGMOD, VLDB, VLDBJ, Usenix Security, SoC
 ## Publications
 
 ### 2023
+* Cong Yue, Tien Tuan Anh Dinh, Zhongle Xie, Meihui Zhang, Gang Chen, Beng Chin Ooi, Xiaokui Xiao. GlassDB: An Efficient Verifiable Ledger Database System Through Transparency. VLDB 2023
 * Daniel Reijsbergen, Aung Maw, Zheng Yang, Tien Tuan Anh Dinh, Jianying Zhou. TAP: transparent and privacy-presrving data services. USENIX Security 2023
 
 ### 2022
