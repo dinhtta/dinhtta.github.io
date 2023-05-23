@@ -10,6 +10,7 @@ properties of P2P systems. My latest interest is centered around blockchains.
 
 ## Services
 I frequently serve as sub-reviewer for SIGMOD, VLDB, VLDBJ, Usenix Security, SoCC, TKDE, WWW, ICDE, TCC.
+* 2023 PC co-chair: VDBS@SIGMOD
 * 2023 PC member: SIGMOD, ICDE, VLDB, NDSS
 * 2022 PC member: VLDB, ICDE, DASFAA, Eurosys (AEC), SoCC
 * 2021 PC member: SIGMOD, Eurosys (AEC), BlockDM, ICDCS, FAB
@@ -20,6 +21,8 @@ I frequently serve as sub-reviewer for SIGMOD, VLDB, VLDBJ, Usenix Security, SoC
 ## Publications
 
 ### 2023
+* Yucheng Wu, Naili Xing, Gang Chen, Tien Tuan Anh Dinh, Zhaojing Luo, Beng Chin Ooi, Xiaokui Xiao, Meuihui Zhang: Falcon: A Privacy-Preserving and Interpretable Vertical Federated Learning System. VLDB 2023.
+* Haotian Gao, Cong Yue, Tien Tuan Anh Dinh, Zhiyong Huang, Beng Chin Ooi: Enabling Secure and Efficient Data Analytics Pipeline Evolution with Trusted Execution Environment. VLDB 2023.
 * Cong Yue, Tien Tuan Anh Dinh, Zhongle Xie, Meihui Zhang, Gang Chen, Beng Chin Ooi, Xiaokui Xiao. GlassDB: An Efficient Verifiable Ledger Database System Through Transparency. VLDB 2023
 * Daniel Reijsbergen, Aung Maw, Zheng Yang, Tien Tuan Anh Dinh, Jianying Zhou. TAP: transparent and privacy-presrving data services. USENIX Security 2023
 
