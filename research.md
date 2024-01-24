@@ -10,8 +10,10 @@ properties of P2P systems. My latest interest is centered around blockchains.
 
 ## Services
 I frequently serve as sub-reviewer for SIGMOD, VLDB, VLDBJ, Usenix Security, SoCC, TKDE, WWW, ICDE, TCC.
+* 2024 PC member: ICDCS
+* 2024 Associate Editor: VLDB
 * 2023 PC co-chair: VDBS@SIGMOD
-* 2023 PC member: SIGMOD, ICDE, VLDB, NDSS
+* 2023 PC member SIGMOD, ICDE, VLDB, NDSS
 * 2022 PC member: VLDB, ICDE, DASFAA, Eurosys (AEC), SoCC
 * 2021 PC member: SIGMOD, Eurosys (AEC), BlockDM, ICDCS, FAB
 * 2020 PC member: ICDCS, SoCC, FAB
