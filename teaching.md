@@ -2,6 +2,12 @@
 layout: default
 permalink: /teaching/
 ---
+* Ethical Hacking [Deakin, 2024]
+* Cyber Security Management [Deakin, 2023]
+* Analytics for Security and Privacy [Deakin, 2022-2023]
+* Network Security [Deakin, 2022]
+* Capstone Projects [Deakin, 2022-2023]
+
 * Systems Security [SUTD, 2020-]
 * Foundations of Cybersecurity [SUTD, 2022]
 * Capstone [SUTD, 2019-2020]
