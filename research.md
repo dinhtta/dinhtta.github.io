@@ -10,6 +10,7 @@ properties of P2P systems. My latest interest is centered around blockchains.
 
 ## Services
 I frequently serve as sub-reviewer for SIGMOD, VLDB, VLDBJ, Usenix Security, SoCC, TKDE, WWW, ICDE, TCC.
+* 2025 PC member: VLDB, ICDE
 * 2024 PC member: ICDCS
 * 2024 Associate Editor: VLDB
 * 2023 PC co-chair: VDBS@SIGMOD
@@ -21,6 +22,9 @@ I frequently serve as sub-reviewer for SIGMOD, VLDB, VLDBJ, Usenix Security, SoC
 * 2018 PC member: BTA (PC co-chair), ICPADS, BlockDB, BlockSEA
 
 ## Publications
+
+### 2025
+* Haotian Gao, Shaofeng Cai, Tien Tuan Anh Dinh, Zhiyong Huang, Beng Chin Ooi: CtxPipe: Context-aware Data Preparation Pipeline Construction for Machine Learning. ACM SIGMOD 2025
 
 ### 2023
 * Yucheng Wu, Naili Xing, Gang Chen, Tien Tuan Anh Dinh, Zhaojing Luo, Beng Chin Ooi, Xiaokui Xiao, Meuihui Zhang: Falcon: A Privacy-Preserving and Interpretable Vertical Federated Learning System. VLDB 2023.

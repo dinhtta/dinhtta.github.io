@@ -10,7 +10,8 @@ VLDB 2024, and am a regular PC member of SIGMOD, ICDE, SoCC, NDSS.
 
 
 ## News
-* I receive [ACM SIGMOD Systems Award (2024)](https://2024.sigmod.org/sigmod_awards.shtm) for contributing to Apache SINGA. 
+* I received Distinguished AE award for my service for VLDB 2024. 
+* I received [ACM SIGMOD Systems Award (2024)](https://2024.sigmod.org/sigmod_awards.shtm) for contributing to Apache SINGA. 
 * I co-chair the first [workshop on verifable database system (VDBS)](https://veridbsys.github.io/), which is colocated with SIGMOD 2023.  
 * I will serve as an associator editor (meta reviewer) for VLDB 2024 
 * A Data Engineering Bulletine issue on transparent databases, for which I was the guest editor, is [now available](http://sites.computer.org/debull/A22june/A22JUNE-CD.pdf). 
