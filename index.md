@@ -6,10 +6,13 @@ I am a senior lecturer (cyber security) at Deakin University.  Previously I was 
 University of Technology and Design, in the Information System and Technology Design (ISTD) pillar. I am interested in
 performance and security aspects of distributed systems (including blockchains, databases, and cloud-native systems).  I
 am a recipient of VLDB 2019's best paper award, and MM'15 best paper runner up award. I serve as associate editor of
-VLDB 2024, and am a regular PC member of SIGMOD, ICDE, SoCC, NDSS.   
+VLDB 2024, 2026, and am a regular PC member of SIGMOD, ICDE, SoCC, NDSS.   
 
 
 ## News
+* I will server as an associate editor for IEEE Transactions on Dependable and Secure Computing (TDSC). Please consider submitting your work!
+* I will server as an associate editor (meta reviewer) for VLDB 2026. Please consider submitting your work!
+* I will be a publication chair for AsiaCCS 2025. See you in Hanoi!
 * I received Distinguished AE award for my service for VLDB 2024. 
 * I received [ACM SIGMOD Systems Award (2024)](https://2024.sigmod.org/sigmod_awards.shtm) for contributing to Apache SINGA. 
 * I co-chair the first [workshop on verifable database system (VDBS)](https://veridbsys.github.io/), which is colocated with SIGMOD 2023.  

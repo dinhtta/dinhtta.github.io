@@ -9,17 +9,14 @@ security and performance of large scale systems. My PhD was in applying formal m
 properties of P2P systems. My latest interest is centered around blockchains. 
 
 ## Services
-I frequently serve as sub-reviewer for SIGMOD, VLDB, VLDBJ, Usenix Security, SoCC, TKDE, WWW, ICDE, TCC.
-* 2025 PC member: VLDB, ICDE
-* 2024 PC member: ICDCS
-* 2024 Associate Editor: VLDB
-* 2023 PC co-chair: VDBS@SIGMOD
-* 2023 PC member SIGMOD, ICDE, VLDB, NDSS
-* 2022 PC member: VLDB, ICDE, DASFAA, Eurosys (AEC), SoCC
-* 2021 PC member: SIGMOD, Eurosys (AEC), BlockDM, ICDCS, FAB
-* 2020 PC member: ICDCS, SoCC, FAB
-* 2019 PC member: VLDB (industry track), BCDL@VLDB, ICICS
-* 2018 PC member: BTA (PC co-chair), ICPADS, BlockDB, BlockSEA
+* VLDB: PC member (2022-now), Associate Editor (2024, 2026)
+* SIGMOD: PC member (2021, 2022)
+* ICDE: PC member (2022-now)
+* EDBT: PC member (2026)
+* ICDCS: PC member (2020, 2021, 2024)
+* SoCC: PC member (2020, 2022)
+* NDSS: PC member (2023)
+* Eurosys: AEC member (2021, 2022)
 
 ## Publications
 
