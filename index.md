@@ -10,6 +10,7 @@ VLDB 2024, 2026, and am a regular PC member of SIGMOD, ICDE, SoCC, NDSS.
 
 
 ## News
+* The SeSeMI paper receives ICDE'25 best student paper award. Well done Guoyu!
 * I will server as an associate editor for IEEE Transactions on Dependable and Secure Computing (TDSC). Please consider submitting your work!
 * I will server as an associate editor (meta reviewer) for VLDB 2026. Please consider submitting your work!
 * I will be a publication chair for AsiaCCS 2025. See you in Hanoi!
