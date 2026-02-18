@@ -20,7 +20,11 @@ properties of P2P systems. My latest interest is centered around blockchains.
 
 ## Publications
 
+### 2026
+* Haotian Gao, Quang Trung Ta, Tien Tuan Anh Dinh, Nhut Minh Ho, Z. Huang, Beng Chin Ooi: NB2P: Generating Data Science Pipelines from Computational Notebooks. ICSE 2026.
+* Dakai Kang, Junchao Chen, Tien Tuan Anh Dinh, Mohammad Sadoghi: FairDAG: consensus fairness over multi-proposer causal design. VLDB 2026
 ### 2025
+* Hung Pham, Viet Vo, Tien Tuan Anh Dinh, Duc Tran, Shuhao Zhang: Leaking Queries On Secure Stream Processing Systems. ACSAC 2025
 * Guoyu Hu, Shaofeng Cai, Tien Tuan Anh Dinh, Zhongle Xie, Cong Yue, Gang Chen, Beng Chin Ooi: HAKES: Scalable Vector Database for Embedding Search Service. VLDB 2025
 * Guoyu Hu, Yuncheng Wu, Gang Chen, Tien Tuan Anh Dinh, Beng Chin Ooi: SeSeMI: secure serverless model inference on sensitive data. ICDE 2025
 * Haotian Gao, Shaofeng Cai, Tien Tuan Anh Dinh, Zhiyong Huang, Beng Chin Ooi: CtxPipe: Context-aware Data Preparation Pipeline Construction for Machine Learning. ACM SIGMOD 2025
