@@ -13,7 +13,7 @@ properties of P2P systems. My latest interest is centered around blockchains.
 * SIGMOD: PC member (2021, 2022)
 * ICDE: PC member (2022-now)
 * EDBT: PC member (2026)
-* ICDCS: PC member (2020, 2021, 2024)
+* ICDCS: PC member (2020, 2021, 2024, 2026)
 * SoCC: PC member (2020, 2022)
 * NDSS: PC member (2023)
 * Eurosys: AEC member (2021, 2022)
@@ -21,8 +21,11 @@ properties of P2P systems. My latest interest is centered around blockchains.
 ## Publications
 
 ### 2026
+* Hexiang Pan, Shaofeng Cai, Yucheng Wu, Y.M. Chee, Tien Tuan Anh Dinh, Beng Chin Ooi: NeuCC: Concurrency Control as a Learnable Function. SIGMOD
+ 2026
 * Haotian Gao, Quang Trung Ta, Tien Tuan Anh Dinh, Nhut Minh Ho, Z. Huang, Beng Chin Ooi: NB2P: Generating Data Science Pipelines from Computational Notebooks. ICSE 2026.
 * Dakai Kang, Junchao Chen, Tien Tuan Anh Dinh, Mohammad Sadoghi: FairDAG: consensus fairness over multi-proposer causal design. VLDB 2026
+
 ### 2025
 * Hung Pham, Viet Vo, Tien Tuan Anh Dinh, Duc Tran, Shuhao Zhang: Leaking Queries On Secure Stream Processing Systems. ACSAC 2025
 * Guoyu Hu, Shaofeng Cai, Tien Tuan Anh Dinh, Zhongle Xie, Cong Yue, Gang Chen, Beng Chin Ooi: HAKES: Scalable Vector Database for Embedding Search Service. VLDB 2025
