@@ -9,6 +9,7 @@ security and performance of large scale systems. My PhD was in applying formal m
 properties of P2P systems. My latest interest is centered around blockchains. 
 
 ## Services
+* Usenix Security: PC member (2026)
 * VLDB: PC member (2022-now), Associate Editor (2024, 2026)
 * SIGMOD: PC member (2021, 2022)
 * ICDE: PC member (2022-now)
@@ -20,7 +21,15 @@ properties of P2P systems. My latest interest is centered around blockchains.
 
 ## Publications
 
+### 2027
+* Nhut-Minh Ho, Tien Tuan Anh Dinh, Quang Trung Ta, Fredrik Svantes, Xiaokui Xiao, Beng Chin Ooi: CuEVM: Scaling Smart
+ Contract Execution on GPUs. ICDE 2027
+
+* Kunpeng Ren, Nhut-Minh Ho, Tien Tuan Anh Dinh, Quang Trung Ta, Xiaokui Xiao, Beng Chin Ooi:  Kaviar: Auditable and Privacy-Preserving Cross-Chain Transfers. VDLB 2027
+
 ### 2026
+* Tien Tuan Anh Dinh, Dakai Kang, Mohammad Sadoghi. FEAT: Fair and Efficient Adversarial Transaction
+ Ordering. ACM PODC 2026
 * Hexiang Pan, Shaofeng Cai, Yucheng Wu, Y.M. Chee, Tien Tuan Anh Dinh, Beng Chin Ooi: NeuCC: Concurrency Control as a Learnable Function. SIGMOD
  2026
 * Haotian Gao, Quang Trung Ta, Tien Tuan Anh Dinh, Nhut Minh Ho, Z. Huang, Beng Chin Ooi: NB2P: Generating Data Science Pipelines from Computational Notebooks. ICSE 2026.

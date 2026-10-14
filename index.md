@@ -10,6 +10,9 @@ VLDB 2024, 2026, and am a regular PC member of SIGMOD, ICDE, SoCC, NDSS.
 
 
 ## News
+* CuEVM and Kaviar are to appear in ICDE and VLDB 2027. 
+* I am in the PC of VLDB, ICDE (senior reviewer), and USENIX Security this year. 
+* I am honored to receive a Distinguished AE award from VLDB 2026. 
 * The SeSeMI paper receives ICDE'25 best student paper award. Well done Guoyu!
 * I will server as an associate editor for IEEE Transactions on Dependable and Secure Computing (TDSC). Please consider submitting your work!
 * I will server as an associate editor (meta reviewer) for VLDB 2026. Please consider submitting your work!
